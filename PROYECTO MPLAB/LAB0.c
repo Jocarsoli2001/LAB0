@@ -88,7 +88,13 @@ void __interrupt() isr(void){
 void main(void) {
     setup();                                                    // Subrutina de setup
     while(1){
-        
+        PORTA = 1;                                              // Se asigna el bit 0 del puerto A y B en 1 para que los jugadores ya tengan una posición antes de iniciar el juego
+        PORTB = 1;
+        if(inicio_carrera == 1){                                // Si la bandera de inicio de carrera está activada, entonces realizar todo el siguiente procedimiento
+            if(PORTEbits.RE1){
+                
+            }
+        }
     }
 }
 
@@ -99,15 +105,15 @@ void setup(void){
     ANSEL = 0;                                                  // Pines 0 y 1 de PORTA como analógicos
     ANSELH = 0;
     
-    TRISA = 0;                                                  // PORTA, bit 0 y 1 como entrada analógica
-    TRISB = 0;
+    TRISA = 0;                                                  // PORTA como salida
+    TRISB = 0;                                                  // PORTB como salida
     TRISC = 0;                                                  // PORTC como salida
     TRISD = 0;                                                  // PORTD como salida                           
-    TRISE = 0b00000111;                                         // PORTE como salida
+    TRISE = 0b00000111;                                         // PORTE como entrada
     
-    PORTA = 0;
+    PORTA = 0;                                                  // Limpiar PORTA
     PORTD = 0;                                                  // Limpiar PORTD
-    PORTB = 0;
+    PORTB = 0;                                                  // Limpiar PORTB
     PORTC = 0;                                                  // Limpiar PORTC
     
     //Configuración de oscilador

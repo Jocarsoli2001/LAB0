@@ -2801,7 +2801,13 @@ void __attribute__((picinterrupt(("")))) isr(void){
 void main(void) {
     setup();
     while(1){
+        PORTA = 1;
+        PORTB = 1;
+        if(inicio_carrera == 1){
+            if(PORTEbits.RE1){
 
+            }
+        }
     }
 }
 

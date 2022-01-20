@@ -31,7 +31,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "47
 [; ;LAB0.c: 47: void setup(void);
 [v _setup `(v ~T0 @X0 0 ef ]
-"3387 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+"166 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 166: extern volatile unsigned char PORTA __attribute__((address(0x005)));
+[v _PORTA `Vuc ~T0 @X0 0 e@5 ]
+"228
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+"3387
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3387: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
 [v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
 "3449
@@ -52,12 +58,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1664
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1664: extern volatile unsigned char TRISE __attribute__((address(0x089)));
 [v _TRISE `Vuc ~T0 @X0 0 e@137 ]
-"166
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 166: extern volatile unsigned char PORTA __attribute__((address(0x005)));
-[v _PORTA `Vuc ~T0 @X0 0 e@5 ]
-"228
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 "1868
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1868:     struct {
 [s S70 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 ]
@@ -539,269 +539,291 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;LAB0.c: 90:     while(1){
 [e :U 153 ]
 {
+"91
+[; ;LAB0.c: 91:         PORTA = 1;
+[e = _PORTA -> -> 1 `i `uc ]
 "92
-[; ;LAB0.c: 92:     }
+[; ;LAB0.c: 92:         PORTB = 1;
+[e = _PORTB -> -> 1 `i `uc ]
+"93
+[; ;LAB0.c: 93:         if(inicio_carrera == 1){
+[e $ ! == _inicio_carrera -> 1 `i 155  ]
+{
+"94
+[; ;LAB0.c: 94:             if(PORTEbits.RE1){
+[e $ ! != -> . . _PORTEbits 0 1 `i -> 0 `i 156  ]
+{
+"96
+[; ;LAB0.c: 96:             }
+}
+[e :U 156 ]
+"97
+[; ;LAB0.c: 97:         }
+}
+[e :U 155 ]
+"98
+[; ;LAB0.c: 98:     }
 }
 [e :U 152 ]
 [e $U 153  ]
 [e :U 154 ]
-"93
-[; ;LAB0.c: 93: }
+"99
+[; ;LAB0.c: 99: }
 [e :UE 151 ]
 }
-"96
-[; ;LAB0.c: 96: void setup(void){
+"102
+[; ;LAB0.c: 102: void setup(void){
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"99
-[; ;LAB0.c: 99:     ANSEL = 0;
-[e = _ANSEL -> -> 0 `i `uc ]
-"100
-[; ;LAB0.c: 100:     ANSELH = 0;
-[e = _ANSELH -> -> 0 `i `uc ]
-"102
-[; ;LAB0.c: 102:     TRISA = 0;
-[e = _TRISA -> -> 0 `i `uc ]
-"103
-[; ;LAB0.c: 103:     TRISB = 0;
-[e = _TRISB -> -> 0 `i `uc ]
-"104
-[; ;LAB0.c: 104:     TRISC = 0;
-[e = _TRISC -> -> 0 `i `uc ]
 "105
-[; ;LAB0.c: 105:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;LAB0.c: 105:     ANSEL = 0;
+[e = _ANSEL -> -> 0 `i `uc ]
 "106
-[; ;LAB0.c: 106:     TRISE = 0b00000111;
-[e = _TRISE -> -> 7 `i `uc ]
+[; ;LAB0.c: 106:     ANSELH = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
 "108
-[; ;LAB0.c: 108:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
+[; ;LAB0.c: 108:     TRISA = 0;
+[e = _TRISA -> -> 0 `i `uc ]
 "109
-[; ;LAB0.c: 109:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
+[; ;LAB0.c: 109:     TRISB = 0;
+[e = _TRISB -> -> 0 `i `uc ]
 "110
-[; ;LAB0.c: 110:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
+[; ;LAB0.c: 110:     TRISC = 0;
+[e = _TRISC -> -> 0 `i `uc ]
 "111
-[; ;LAB0.c: 111:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
+[; ;LAB0.c: 111:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
+"112
+[; ;LAB0.c: 112:     TRISE = 0b00000111;
+[e = _TRISE -> -> 7 `i `uc ]
 "114
-[; ;LAB0.c: 114:     OSCCONbits.IRCF = 0b0110;
-[e = . . _OSCCONbits 0 4 -> -> 6 `i `uc ]
+[; ;LAB0.c: 114:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
 "115
-[; ;LAB0.c: 115:     OSCCONbits.SCS = 1;
-[e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"118
-[; ;LAB0.c: 118:     OPTION_REGbits.T0CS = 0;
-[e = . . _OPTION_REGbits 0 3 -> -> 0 `i `uc ]
-"119
-[; ;LAB0.c: 119:     OPTION_REGbits.T0SE = 0;
-[e = . . _OPTION_REGbits 0 2 -> -> 0 `i `uc ]
+[; ;LAB0.c: 115:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
+"116
+[; ;LAB0.c: 116:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
+"117
+[; ;LAB0.c: 117:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
 "120
-[; ;LAB0.c: 120:     OPTION_REGbits.PSA = 0;
-[e = . . _OPTION_REGbits 0 1 -> -> 0 `i `uc ]
+[; ;LAB0.c: 120:     OSCCONbits.IRCF = 0b0110;
+[e = . . _OSCCONbits 0 4 -> -> 6 `i `uc ]
 "121
-[; ;LAB0.c: 121:     OPTION_REGbits.PS2 = 1;
-[e = . . _OPTION_REGbits 1 2 -> -> 1 `i `uc ]
-"122
-[; ;LAB0.c: 122:     OPTION_REGbits.PS1 = 1;
-[e = . . _OPTION_REGbits 1 1 -> -> 1 `i `uc ]
-"123
-[; ;LAB0.c: 123:     OPTION_REGbits.PS0 = 1;
-[e = . . _OPTION_REGbits 1 0 -> -> 1 `i `uc ]
+[; ;LAB0.c: 121:     OSCCONbits.SCS = 1;
+[e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
 "124
-[; ;LAB0.c: 124:     TMR0 = 61;
-[e = _TMR0 -> -> 61 `i `uc ]
+[; ;LAB0.c: 124:     OPTION_REGbits.T0CS = 0;
+[e = . . _OPTION_REGbits 0 3 -> -> 0 `i `uc ]
+"125
+[; ;LAB0.c: 125:     OPTION_REGbits.T0SE = 0;
+[e = . . _OPTION_REGbits 0 2 -> -> 0 `i `uc ]
+"126
+[; ;LAB0.c: 126:     OPTION_REGbits.PSA = 0;
+[e = . . _OPTION_REGbits 0 1 -> -> 0 `i `uc ]
 "127
-[; ;LAB0.c: 127:     INTCONbits.T0IF = 0;
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+[; ;LAB0.c: 127:     OPTION_REGbits.PS2 = 1;
+[e = . . _OPTION_REGbits 1 2 -> -> 1 `i `uc ]
 "128
-[; ;LAB0.c: 128:     INTCONbits.T0IE = 1;
-[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
+[; ;LAB0.c: 128:     OPTION_REGbits.PS1 = 1;
+[e = . . _OPTION_REGbits 1 1 -> -> 1 `i `uc ]
 "129
-[; ;LAB0.c: 129:     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[; ;LAB0.c: 129:     OPTION_REGbits.PS0 = 1;
+[e = . . _OPTION_REGbits 1 0 -> -> 1 `i `uc ]
 "130
-[; ;LAB0.c: 130:     PIR1bits.ADIF = 0;
-[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"131
-[; ;LAB0.c: 131:     PIE1bits.ADIE = 1;
-[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-"132
-[; ;LAB0.c: 132:     INTCONbits.PEIE = 1;
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+[; ;LAB0.c: 130:     TMR0 = 61;
+[e = _TMR0 -> -> 61 `i `uc ]
+"133
+[; ;LAB0.c: 133:     INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
 "134
-[; ;LAB0.c: 134:     return;
-[e $UE 155  ]
+[; ;LAB0.c: 134:     INTCONbits.T0IE = 1;
+[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
 "135
-[; ;LAB0.c: 135: }
-[e :UE 155 ]
-}
+[; ;LAB0.c: 135:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"136
+[; ;LAB0.c: 136:     PIR1bits.ADIF = 0;
+[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
 "137
-[; ;LAB0.c: 137: void tmr0(void){
+[; ;LAB0.c: 137:     PIE1bits.ADIE = 1;
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+"138
+[; ;LAB0.c: 138:     INTCONbits.PEIE = 1;
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+"140
+[; ;LAB0.c: 140:     return;
+[e $UE 157  ]
+"141
+[; ;LAB0.c: 141: }
+[e :UE 157 ]
+}
+"143
+[; ;LAB0.c: 143: void tmr0(void){
 [v _tmr0 `(v ~T0 @X0 1 ef ]
 {
 [e :U _tmr0 ]
 [f ]
-"138
-[; ;LAB0.c: 138:     INTCONbits.T0IF = 0;
+"144
+[; ;LAB0.c: 144:     INTCONbits.T0IF = 0;
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-"139
-[; ;LAB0.c: 139:     TMR0 = 61;
+"145
+[; ;LAB0.c: 145:     TMR0 = 61;
 [e = _TMR0 -> -> 61 `i `uc ]
-"140
-[; ;LAB0.c: 140:     return;
-[e $UE 156  ]
-"141
-[; ;LAB0.c: 141: }
-[e :UE 156 ]
+"146
+[; ;LAB0.c: 146:     return;
+[e $UE 158  ]
+"147
+[; ;LAB0.c: 147: }
+[e :UE 158 ]
 }
-"143
-[; ;LAB0.c: 143: int tabla(int a){
+"149
+[; ;LAB0.c: 149: int tabla(int a){
 [v _tabla `(i ~T0 @X0 1 ef1`i ]
 {
 [e :U _tabla ]
 [v _a `i ~T0 @X0 1 r1 ]
 [f ]
-"144
-[; ;LAB0.c: 144:     switch (a){
-[e $U 159  ]
-{
-"145
-[; ;LAB0.c: 145:         case 0:
-[e :U 160 ]
-"146
-[; ;LAB0.c: 146:             return 0b00111111;
-[e ) -> 63 `i ]
-[e $UE 157  ]
-"147
-[; ;LAB0.c: 147:             break;
-[e $U 158  ]
-"148
-[; ;LAB0.c: 148:         case 1:
-[e :U 161 ]
-"149
-[; ;LAB0.c: 149:             return 0b00000110;
-[e ) -> 6 `i ]
-[e $UE 157  ]
 "150
-[; ;LAB0.c: 150:             break;
-[e $U 158  ]
+[; ;LAB0.c: 150:     switch (a){
+[e $U 161  ]
+{
 "151
-[; ;LAB0.c: 151:         case 2:
+[; ;LAB0.c: 151:         case 0:
 [e :U 162 ]
 "152
-[; ;LAB0.c: 152:             return 0b01011011;
-[e ) -> 91 `i ]
-[e $UE 157  ]
+[; ;LAB0.c: 152:             return 0b00111111;
+[e ) -> 63 `i ]
+[e $UE 159  ]
 "153
 [; ;LAB0.c: 153:             break;
-[e $U 158  ]
+[e $U 160  ]
 "154
-[; ;LAB0.c: 154:         case 3:
+[; ;LAB0.c: 154:         case 1:
 [e :U 163 ]
 "155
-[; ;LAB0.c: 155:             return 0b01001111;
-[e ) -> 79 `i ]
-[e $UE 157  ]
+[; ;LAB0.c: 155:             return 0b00000110;
+[e ) -> 6 `i ]
+[e $UE 159  ]
 "156
 [; ;LAB0.c: 156:             break;
-[e $U 158  ]
+[e $U 160  ]
 "157
-[; ;LAB0.c: 157:         case 4:
+[; ;LAB0.c: 157:         case 2:
 [e :U 164 ]
 "158
-[; ;LAB0.c: 158:             return 0b01100110;
-[e ) -> 102 `i ]
-[e $UE 157  ]
+[; ;LAB0.c: 158:             return 0b01011011;
+[e ) -> 91 `i ]
+[e $UE 159  ]
 "159
 [; ;LAB0.c: 159:             break;
-[e $U 158  ]
+[e $U 160  ]
 "160
-[; ;LAB0.c: 160:         case 5:
+[; ;LAB0.c: 160:         case 3:
 [e :U 165 ]
 "161
-[; ;LAB0.c: 161:             return 0b01101101;
-[e ) -> 109 `i ]
-[e $UE 157  ]
+[; ;LAB0.c: 161:             return 0b01001111;
+[e ) -> 79 `i ]
+[e $UE 159  ]
 "162
 [; ;LAB0.c: 162:             break;
-[e $U 158  ]
+[e $U 160  ]
 "163
-[; ;LAB0.c: 163:         case 6:
+[; ;LAB0.c: 163:         case 4:
 [e :U 166 ]
 "164
-[; ;LAB0.c: 164:             return 0b01111101;
-[e ) -> 125 `i ]
-[e $UE 157  ]
+[; ;LAB0.c: 164:             return 0b01100110;
+[e ) -> 102 `i ]
+[e $UE 159  ]
 "165
 [; ;LAB0.c: 165:             break;
-[e $U 158  ]
+[e $U 160  ]
 "166
-[; ;LAB0.c: 166:         case 7:
+[; ;LAB0.c: 166:         case 5:
 [e :U 167 ]
 "167
-[; ;LAB0.c: 167:             return 0b00000111;
-[e ) -> 7 `i ]
-[e $UE 157  ]
+[; ;LAB0.c: 167:             return 0b01101101;
+[e ) -> 109 `i ]
+[e $UE 159  ]
 "168
 [; ;LAB0.c: 168:             break;
-[e $U 158  ]
+[e $U 160  ]
 "169
-[; ;LAB0.c: 169:         case 8:
+[; ;LAB0.c: 169:         case 6:
 [e :U 168 ]
 "170
-[; ;LAB0.c: 170:             return 0b01111111;
-[e ) -> 127 `i ]
-[e $UE 157  ]
+[; ;LAB0.c: 170:             return 0b01111101;
+[e ) -> 125 `i ]
+[e $UE 159  ]
 "171
 [; ;LAB0.c: 171:             break;
-[e $U 158  ]
+[e $U 160  ]
 "172
-[; ;LAB0.c: 172:         case 9:
+[; ;LAB0.c: 172:         case 7:
 [e :U 169 ]
 "173
-[; ;LAB0.c: 173:             return 0b01101111;
-[e ) -> 111 `i ]
-[e $UE 157  ]
+[; ;LAB0.c: 173:             return 0b00000111;
+[e ) -> 7 `i ]
+[e $UE 159  ]
 "174
 [; ;LAB0.c: 174:             break;
-[e $U 158  ]
+[e $U 160  ]
 "175
-[; ;LAB0.c: 175:         case 10:
+[; ;LAB0.c: 175:         case 8:
 [e :U 170 ]
 "176
-[; ;LAB0.c: 176:             return 0b01111011;
-[e ) -> 123 `i ]
-[e $UE 157  ]
+[; ;LAB0.c: 176:             return 0b01111111;
+[e ) -> 127 `i ]
+[e $UE 159  ]
 "177
-[; ;LAB0.c: 177:         default:
-[e :U 171 ]
+[; ;LAB0.c: 177:             break;
+[e $U 160  ]
 "178
-[; ;LAB0.c: 178:             break;
-[e $U 158  ]
+[; ;LAB0.c: 178:         case 9:
+[e :U 171 ]
+"179
+[; ;LAB0.c: 179:             return 0b01101111;
+[e ) -> 111 `i ]
+[e $UE 159  ]
 "180
-[; ;LAB0.c: 180:     }
-}
-[e $U 158  ]
-[e :U 159 ]
-[e [\ _a , $ -> 0 `i 160
- , $ -> 1 `i 161
- , $ -> 2 `i 162
- , $ -> 3 `i 163
- , $ -> 4 `i 164
- , $ -> 5 `i 165
- , $ -> 6 `i 166
- , $ -> 7 `i 167
- , $ -> 8 `i 168
- , $ -> 9 `i 169
- , $ -> 10 `i 170
- 171 ]
-[e :U 158 ]
+[; ;LAB0.c: 180:             break;
+[e $U 160  ]
 "181
-[; ;LAB0.c: 181: }
-[e :UE 157 ]
+[; ;LAB0.c: 181:         case 10:
+[e :U 172 ]
+"182
+[; ;LAB0.c: 182:             return 0b01111011;
+[e ) -> 123 `i ]
+[e $UE 159  ]
+"183
+[; ;LAB0.c: 183:         default:
+[e :U 173 ]
+"184
+[; ;LAB0.c: 184:             break;
+[e $U 160  ]
+"186
+[; ;LAB0.c: 186:     }
+}
+[e $U 160  ]
+[e :U 161 ]
+[e [\ _a , $ -> 0 `i 162
+ , $ -> 1 `i 163
+ , $ -> 2 `i 164
+ , $ -> 3 `i 165
+ , $ -> 4 `i 166
+ , $ -> 5 `i 167
+ , $ -> 6 `i 168
+ , $ -> 7 `i 169
+ , $ -> 8 `i 170
+ , $ -> 9 `i 171
+ , $ -> 10 `i 172
+ 173 ]
+[e :U 160 ]
+"187
+[; ;LAB0.c: 187: }
+[e :UE 159 ]
 }
