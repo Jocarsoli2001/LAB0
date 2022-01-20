@@ -11,15 +11,15 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"56 D:\Archivos\Documentos\Universidad y colegio\UVG\2022\Primer Semestre\Electrónica digital 2\Laboratorios\LAB0\PROYECTO MPLAB\LAB0.c
+"57 D:\Archivos\Documentos\Universidad y colegio\UVG\2022\Primer Semestre\Electrónica digital 2\Laboratorios\LAB0\PROYECTO MPLAB\LAB0.c
 [v _isr isr `II(v  1 e 1 0 ]
-"92
+"88
 [v _main main `(v  1 e 1 0 ]
-"100
+"96
 [v _setup setup `(v  1 e 1 0 ]
-"141
+"137
 [v _tmr0 tmr0 `(v  1 e 1 0 ]
-"147
+"143
 [v _tabla tabla `(i  1 e 2 0 ]
 "59 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -130,29 +130,31 @@
 [v _timer_iniciado timer_iniciado `i  1 e 2 0 ]
 "43
 [v _cuenta_atras cuenta_atras `i  1 e 2 0 ]
-"92
+"44
+[v _inicio_carrera inicio_carrera `i  1 e 2 0 ]
+"88
 [v _main main `(v  1 e 1 0 ]
 {
-"97
+"93
 } 0
-"100
+"96
 [v _setup setup `(v  1 e 1 0 ]
 {
-"139
+"135
 } 0
-"56
+"57
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"89
+"85
 } 0
-"141
+"137
 [v _tmr0 tmr0 `(v  1 e 1 0 ]
 {
-"145
+"141
 } 0
-"147
+"143
 [v _tabla tabla `(i  1 e 2 0 ]
 {
 [v tabla@a a `i  1 p 2 0 ]
-"185
+"181
 } 0

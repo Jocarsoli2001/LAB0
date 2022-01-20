@@ -41,6 +41,7 @@ int cont = 0;
 int cont_display = 3;
 int timer_iniciado = 0;
 int cuenta_atras = 1;
+int inicio_carrera = 0;
 
 //------------Funciones sin retorno de variables----------------------
 void setup(void);                               // Función de setup
@@ -66,23 +67,18 @@ void __interrupt() isr(void){
                 PORTD = 1;                                      //      entonces PORTD = 1
                 cont_display -= 1;                              //      y cont_display = 2
             }
-            else if(cont == 40){                                // Si pasa 1 segundo (0.05 segundos * 40 = 2 segundos),
+            else if(cont == 40){                                // Si pasan 2 segundos (0.05 segundos * 40 = 2 segundos),
                 PORTD = 3;                                      //      entonces PORTD = 3
                 cont_display -= 1;                              //      y cont_display = 1
             }
-            else if(cont >= 60){
-                PORTD = 7;
-                cont_display -= 1;
-                cont = 0;
-                cont_display = 0;
-                cuenta_atras = 0;
+            else if(cont >= 60){                                // Si pasan 3 segundos o más (0.05 segundos * 60 = 3 segundos),
+                PORTD = 7;                                      //      entonces PORTD = 7
+                cont = 0;                                       //      contador de segundos = 0
+                cont_display = 0;                               //      cont_display = 0
+                cuenta_atras = 0;                               //      cuenta atrás finaliza
+                inicio_carrera = 1;                             //      Se activa la bandera que indica si se puede iniciar la carrera o no
             }
-            else if (cont > 80) {
-                cont = 0;
-                cont_display = 0;
-                cuenta_atras = 0;
-            }
-            PORTC = tabla(cont_display);
+            PORTC = tabla(cont_display);                        // Todo el tiempo, el puerto C toma el valor de cont_display luego de ser traducido a la tabla de 7 segmentos
         }
     }
     

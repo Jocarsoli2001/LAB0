@@ -2754,6 +2754,7 @@ int cont = 0;
 int cont_display = 3;
 int timer_iniciado = 0;
 int cuenta_atras = 1;
+int inicio_carrera = 0;
 
 
 void setup(void);
@@ -2785,15 +2786,10 @@ void __attribute__((picinterrupt(("")))) isr(void){
             }
             else if(cont >= 60){
                 PORTD = 7;
-                cont_display -= 1;
                 cont = 0;
                 cont_display = 0;
                 cuenta_atras = 0;
-            }
-            else if (cont > 80) {
-                cont = 0;
-                cont_display = 0;
-                cuenta_atras = 0;
+                inicio_carrera = 1;
             }
             PORTC = tabla(cont_display);
         }
