@@ -2816,6 +2816,20 @@ void __attribute__((picinterrupt(("")))) isr(void){
             }
         }
 
+
+        if(PORTEbits.RE3){
+            while(PORTEbits.RE3);
+            cont_display = 3;
+            timer_iniciado = 0;
+            cuenta_atras = 1;
+            inicio_carrera = 0;
+            cont = 0;
+            PORTA = 0;
+            PORTB = 0;
+            PORTC = 0;
+            PORTD = 0;
+        }
+
     }
 
 }
@@ -2865,9 +2879,6 @@ void setup(void){
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
 
-
-
-
     return;
 }
 
@@ -2909,8 +2920,6 @@ int tabla(int a){
         case 9:
             return 0b01101111;
             break;
-        case 10:
-            return 0b01111011;
         default:
             break;
 

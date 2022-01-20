@@ -34,14 +34,14 @@
 #include <stdio.h>
 
 //-----------------------Constantes----------------------------------
-#define  valor_tmr0 61                          // valor_tmr0 = 61 (0.05 ms)
+#define  valor_tmr0 61                                          // valor_tmr0 = 61 (0.05 ms)
 
 //-----------------------Variables------------------------------------
-int cont = 0;
-int cont_display = 3;
-int timer_iniciado = 0;
-int cuenta_atras = 1;
-int inicio_carrera = 0;
+int cont = 0;                                                   // Variable de contador             
+int cont_display = 3;                                           // Variable con la que empieza el display de 7 segmentos en el semáforo
+int timer_iniciado = 0;                                         // Variable que indica si se inició el timer de la cuenta atrás
+int cuenta_atras = 1;                                           // Variable que indica si se inició la cuenta atrás del semáforo
+int inicio_carrera = 0;                                         // Variable que indica si se pueden mover los jugadores en la carrera
 
 //------------Funciones sin retorno de variables----------------------
 void setup(void);                                               // Función de setup
@@ -93,14 +93,28 @@ void __interrupt() isr(void){
                 while(PORTEbits.RE2);                           // Antirebote para que no se realice nada hasta que el botón en RE2 se suelte
                 PORTB = PORTB*2;                                // Se hace el contador de décadas multiplicando por 2 el valor del puerto. Esto genera ascensos de 2 en 2
             }
-            if(PORTA == 128 && PORTB < 128){
-                PORTDbits.RD6 = 1;
-                PORTC = 0b00000110;
+            if(PORTA == 128 && PORTB < 128){                    // Si puerto A = 128 y puerto B es menor a 128, entonces
+                PORTDbits.RD6 = 1;                              //      Bit 6 del puerto D se prende, indicando que el ganador es el jugador 1
+                PORTC = 0b00000110;                             //      PORTC = 6 => número 1 en display de 7 segmentos
             }
-            if(PORTB == 128 && PORTA < 128){
-                PORTDbits.RD7 = 1;
-                PORTC = 0b01011011;
+            if(PORTB == 128 && PORTA < 128){                    // Si puerto B = 128 y puerto A es menor a 128, entonces
+                PORTDbits.RD7 = 1;                              //      Bit 7 del puerto D se prende, indicando que el ganador es el jugador 2
+                PORTC = 0b01011011;                             //      PORTC = 91 => número 2 en display de 7 segmentos
             }
+        }
+        
+        //---------------------Botón para reiniciar el juego---------------------
+        if(PORTEbits.RE3){                                      // Si el botón en RE3 es presionado, entonces:
+            while(PORTEbits.RE3);                               //      Antirebote para que no reinicie rápidamente
+            cont_display = 3;                                   //      cont_display adquiere valor inicial de 3
+            timer_iniciado = 0;                                 //      timer_iniciado adquiere valor inicial de 0
+            cuenta_atras = 1;                                   //      cuenta_atras adquiere valor inicial de 1
+            inicio_carrera = 0;                                 //      inicio_carrera adquiere valor inicial de 0
+            cont = 0;                                           //      cont adquiere valor inicial de 0
+            PORTA = 0;                                          //      PORTA adquiere valor inicial de 0
+            PORTB = 0;                                          //      PORTB adquiere valor inicial de 0
+            PORTC = 0;                                          //      PORTC adquiere valor inicial de 0
+            PORTD = 0;                                          //      PORTD adquiere valor inicial de 0
         }
         
     }
@@ -152,9 +166,6 @@ void setup(void){
     INTCONbits.GIE = 1;                                         // Habilitar interrupciones globales
     INTCONbits.PEIE = 1;                                        // Interrupciones periféricas activadas
     
-    // Activación de variables globales
-    
-    
     return;
 }
 
@@ -167,37 +178,35 @@ void tmr0(void){
 int tabla(int a){
     switch (a){
         case 0:
-            return 0b00111111;
+            return 0b00111111;                                  // Si se presenta número 0 en binario, retornar 00111111 (número 0 en display de 7 segmentos)
             break;
         case 1:
-            return 0b00000110;
+            return 0b00000110;                                  // Si se presenta número 1 en binario, retornar 00000110 (número 1 en display de 7 segmentos)
             break;
         case 2:
-            return 0b01011011;
+            return 0b01011011;                                  // Si se presenta número 2 en binario, retornar 01011011 (número 2 en display de 7 segmentos)     
             break;
         case 3:
-            return 0b01001111;
+            return 0b01001111;                                  // Si se presenta número 3 en binario, retornar 01001111 (número 3 en display de 7 segmentos)
             break;
         case 4:
-            return 0b01100110;
+            return 0b01100110;                                  // Si se presenta número 4 en binario, retornar 01100110 (número 4 en display de 7 segmentos)
             break;
         case 5:
-            return 0b01101101;
-            break;
+            return 0b01101101;                                  // Si se presenta número 5 en binario, retornar 01101101 (número 5 en display de 7 segmentos)
+            break;  
         case 6:
-            return 0b01111101;
+            return 0b01111101;                                  // Si se presenta número 6 en binario, retornar 01111101 (número 6 en display de 7 segmentos)
             break;
         case 7:
-            return 0b00000111;
+            return 0b00000111;                                  // Si se presenta número 7 en binario, retornar 00000111 (número 7 en display de 7 segmentos)
             break;
         case 8:
-            return 0b01111111;
+            return 0b01111111;                                  // Si se presenta número 8 en binario, retornar 01111111 (número 8 en display de 7 segmentos)
             break;
         case 9:
-            return 0b01101111;
+            return 0b01101111;                                  // Si se presenta número 9 en binario, retornar 01101111 (número 8 en display de 7 segmentos)
             break;
-        case 10:
-            return 0b01111011;
         default:
             break;
             
