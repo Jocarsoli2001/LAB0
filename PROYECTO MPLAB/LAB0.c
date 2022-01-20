@@ -44,18 +44,18 @@ int cuenta_atras = 1;
 int inicio_carrera = 0;
 
 //------------Funciones sin retorno de variables----------------------
-void setup(void);                               // Función de setup
-void divisor(void);                             // Función para dividir números en dígitos
-void tmr0(void);                                // Función para reiniciar TMR0
-void displays(void);                            // Función para alternar valores mostrados en displays
+void setup(void);                                               // Función de setup
+void tmr0(void);                                                // Función para reiniciar TMR0
 
 //-------------Funciones que retornan variables-----------------------
-int  tabla(int a);                              // Tabla para traducir valores a displays de 7 segmentos
-int  tabla_p(int a);                            // Tabla que traduce valores a displays de 7 segmentos pero con punto decimal incluido
+int  tabla(int a);                                              // Tabla para traducir valores a displays de 7 segmentos
+int  tabla_p(int a);                                            // Tabla que traduce valores a displays de 7 segmentos pero con punto decimal incluido
 
 //----------------------Interrupciones--------------------------------
 void __interrupt() isr(void){
     if(T0IF){                                                   // Si la bandera del timer 0 se activa, entonces proceder a realizar el código siguiente
+        
+        //------------------Semáforo-----------------------------------
         if(cuenta_atras == 1){                                  // Si bandera de cuenta atrás está activa, entonces: 
             if(timer_iniciado == 0){                            // Revisar si el timer para cuenta atrás ha iniciado
                 while (PORTEbits.RE0 == 0);                     // Si timer no ha iniciado, revisar si se ha presionado el botón en el bit 0 del puerto E
@@ -82,15 +82,25 @@ void __interrupt() isr(void){
             }
             PORTC = tabla(cont_display);                        // Todo el tiempo, el puerto C toma el valor de cont_display luego de ser traducido a la tabla de 7 segmentos
         }
+        
+        //----------------Carrera-------------------------------
         else if(cuenta_atras == 0){
-            if(PORTEbits.RE1 == 1 && inicio_carrera == 1){      // Si la bandera de inicio de carrera está activada, entonces realizar todo el siguiente procedimiento
+            if(PORTEbits.RE1 == 1 && inicio_carrera == 1){      // Si la bandera de inicio de carrera está activada y se presiona el botón del jugador 1, entonces realizar todo el siguiente procedimiento
                 while(PORTEbits.RE1);                           // Antirebote para que no se realice nada hasta que el botón en RE1 se suelte
                 PORTA = PORTA*2;                                // Se hace el contador de décadas multiplicando por 2 el valor del puerto. Esto genera ascensos de 2 en 2
             }
-            if(PORTEbits.RE2 == 1 && inicio_carrera == 1){      // Si la bandera de inicio de carrera está activada, entonces realizar todo el siguiente procedimiento
-                while(PORTEbits.RE2);                           // Antirebote para que no se realice nada hasta que el botón en RE1 se suelte
+            if(PORTEbits.RE2 == 1 && inicio_carrera == 1){      // Si la bandera de inicio de carrera está activada y se presiona el botón del jugador 2, entonces realizar todo el siguiente procedimiento
+                while(PORTEbits.RE2);                           // Antirebote para que no se realice nada hasta que el botón en RE2 se suelte
                 PORTB = PORTB*2;                                // Se hace el contador de décadas multiplicando por 2 el valor del puerto. Esto genera ascensos de 2 en 2
-            } 
+            }
+            if(PORTA == 128 && PORTB < 128){
+                PORTDbits.RD6 = 1;
+                PORTC = 0b00000110;
+            }
+            if(PORTB == 128 && PORTA < 128){
+                PORTDbits.RD7 = 1;
+                PORTC = 0b01011011;
+            }
         }
         
     }
@@ -100,13 +110,8 @@ void __interrupt() isr(void){
 //----------------------Main Loop--------------------------------
 void main(void) {
     setup();                                                    // Subrutina de setup
-    while(1){
-        if(PORTA == 255 && PORTB < 255){
-            PORTD = 0b01000000;
-        }
-        else if(PORTB == 255 && PORTA < 255){
-            PORTD = 0b10000000;
-        }
+    while(1){                                                   // Loop principal
+        
     }
 }
 
@@ -155,7 +160,7 @@ void setup(void){
 
 void tmr0(void){
     INTCONbits.T0IF = 0;                                        // Limpiar bandera de TIMER 0
-    TMR0 = valor_tmr0;                                          // TMR0 = 255
+    TMR0 = valor_tmr0;                                          // TMR0 = 61
     return;
 }
 

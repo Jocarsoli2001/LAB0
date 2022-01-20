@@ -2758,9 +2758,7 @@ int inicio_carrera = 0;
 
 
 void setup(void);
-void divisor(void);
 void tmr0(void);
-void displays(void);
 
 
 int tabla(int a);
@@ -2769,6 +2767,8 @@ int tabla_p(int a);
 
 void __attribute__((picinterrupt(("")))) isr(void){
     if(T0IF){
+
+
         if(cuenta_atras == 1){
             if(timer_iniciado == 0){
                 while (PORTEbits.RE0 == 0);
@@ -2795,6 +2795,8 @@ void __attribute__((picinterrupt(("")))) isr(void){
             }
             PORTC = tabla(cont_display);
         }
+
+
         else if(cuenta_atras == 0){
             if(PORTEbits.RE1 == 1 && inicio_carrera == 1){
                 while(PORTEbits.RE1);
@@ -2803,6 +2805,14 @@ void __attribute__((picinterrupt(("")))) isr(void){
             if(PORTEbits.RE2 == 1 && inicio_carrera == 1){
                 while(PORTEbits.RE2);
                 PORTB = PORTB*2;
+            }
+            if(PORTA == 128 && PORTB < 128){
+                PORTDbits.RD6 = 1;
+                PORTC = 0b00000110;
+            }
+            if(PORTB == 128 && PORTA < 128){
+                PORTDbits.RD7 = 1;
+                PORTC = 0b01011011;
             }
         }
 
@@ -2814,12 +2824,7 @@ void __attribute__((picinterrupt(("")))) isr(void){
 void main(void) {
     setup();
     while(1){
-        if(PORTA == 255 && PORTB < 255){
-            PORTD = 0b01000000;
-        }
-        else if(PORTB == 255 && PORTA < 255){
-            PORTD = 0b10000000;
-        }
+
     }
 }
 
