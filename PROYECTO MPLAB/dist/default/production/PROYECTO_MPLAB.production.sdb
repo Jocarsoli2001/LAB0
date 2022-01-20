@@ -13,13 +13,13 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "57 D:\Archivos\Documentos\Universidad y colegio\UVG\2022\Primer Semestre\Electrónica digital 2\Laboratorios\LAB0\PROYECTO MPLAB\LAB0.c
 [v _isr isr `II(v  1 e 1 0 ]
-"88
+"101
 [v _main main `(v  1 e 1 0 ]
-"102
+"114
 [v _setup setup `(v  1 e 1 0 ]
-"143
+"156
 [v _tmr0 tmr0 `(v  1 e 1 0 ]
-"149
+"162
 [v _tabla tabla `(i  1 e 2 0 ]
 "59 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -56,17 +56,6 @@
 ]
 [u S127 . 1 `S113 1 . 1 0 `S122 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES127  1 e 1 @11 ]
-[s S145 . 1 `uc 1 TMR1IF 1 0 :1:0 
-`uc 1 TMR2IF 1 0 :1:1 
-`uc 1 CCP1IF 1 0 :1:2 
-`uc 1 SSPIF 1 0 :1:3 
-`uc 1 TXIF 1 0 :1:4 
-`uc 1 RCIF 1 0 :1:5 
-`uc 1 ADIF 1 0 :1:6 
-]
-"553
-[u S153 . 1 `S145 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES153  1 e 1 @12 ]
 [s S86 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
@@ -91,17 +80,6 @@
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S164 . 1 `uc 1 TMR1IE 1 0 :1:0 
-`uc 1 TMR2IE 1 0 :1:1 
-`uc 1 CCP1IE 1 0 :1:2 
-`uc 1 SSPIE 1 0 :1:3 
-`uc 1 TXIE 1 0 :1:4 
-`uc 1 RCIE 1 0 :1:5 
-`uc 1 ADIE 1 0 :1:6 
-]
-"1718
-[u S172 . 1 `S164 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES172  1 e 1 @140 ]
 [s S60 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
@@ -132,29 +110,29 @@
 [v _cuenta_atras cuenta_atras `i  1 e 2 0 ]
 "44
 [v _inicio_carrera inicio_carrera `i  1 e 2 0 ]
-"88
+"101
 [v _main main `(v  1 e 1 0 ]
 {
-"99
+"111
 } 0
-"102
+"114
 [v _setup setup `(v  1 e 1 0 ]
 {
-"141
+"154
 } 0
 "57
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"85
+"98
 } 0
-"143
+"156
 [v _tmr0 tmr0 `(v  1 e 1 0 ]
 {
-"147
+"160
 } 0
-"149
+"162
 [v _tabla tabla `(i  1 e 2 0 ]
 {
 [v tabla@a a `i  1 p 2 0 ]
-"187
+"200
 } 0

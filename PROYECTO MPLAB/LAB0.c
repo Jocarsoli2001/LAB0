@@ -70,6 +70,8 @@ void __interrupt() isr(void){
             else if(cont == 40){                                // Si pasan 2 segundos (0.05 segundos * 40 = 2 segundos),
                 PORTD = 3;                                      //      entonces PORTD = 3
                 cont_display -= 1;                              //      y cont_display = 1
+                PORTA = 1;                                      // Se colocan a los jugadores 1 y 2 en su posición inicial
+                PORTB = 1;
             }
             else if(cont >= 60){                                // Si pasan 3 segundos o más (0.05 segundos * 60 = 3 segundos),
                 PORTD = 7;                                      //      entonces PORTD = 7
@@ -80,6 +82,17 @@ void __interrupt() isr(void){
             }
             PORTC = tabla(cont_display);                        // Todo el tiempo, el puerto C toma el valor de cont_display luego de ser traducido a la tabla de 7 segmentos
         }
+        else if(cuenta_atras == 0){
+            if(PORTEbits.RE1 == 1 && inicio_carrera == 1){      // Si la bandera de inicio de carrera está activada, entonces realizar todo el siguiente procedimiento
+                while(PORTEbits.RE1);                           // Antirebote para que no se realice nada hasta que el botón en RE1 se suelte
+                PORTA = PORTA*2;                                // Se hace el contador de décadas multiplicando por 2 el valor del puerto. Esto genera ascensos de 2 en 2
+            }
+            if(PORTEbits.RE2 == 1 && inicio_carrera == 1){      // Si la bandera de inicio de carrera está activada, entonces realizar todo el siguiente procedimiento
+                while(PORTEbits.RE2);                           // Antirebote para que no se realice nada hasta que el botón en RE1 se suelte
+                PORTB = PORTB*2;                                // Se hace el contador de décadas multiplicando por 2 el valor del puerto. Esto genera ascensos de 2 en 2
+            } 
+        }
+        
     }
     
 }
@@ -88,12 +101,11 @@ void __interrupt() isr(void){
 void main(void) {
     setup();                                                    // Subrutina de setup
     while(1){
-        PORTA = 1;                                              // Se asigna el bit 0 del puerto A y B en 1 para que los jugadores ya tengan una posición antes de iniciar el juego
-        PORTB = 1;
-        if(inicio_carrera == 1){                                // Si la bandera de inicio de carrera está activada, entonces realizar todo el siguiente procedimiento
-            if(PORTEbits.RE1){
-                
-            }
+        if(PORTA == 255 && PORTB < 255){
+            PORTD = 0b01000000;
+        }
+        else if(PORTB == 255 && PORTA < 255){
+            PORTD = 0b10000000;
         }
     }
 }
@@ -133,9 +145,10 @@ void setup(void){
     INTCONbits.T0IF = 0;                                        // Habilitada la bandera de TIMER 0      
     INTCONbits.T0IE = 1;                                        // Habilitar las interrupciones de TIMER 0
     INTCONbits.GIE = 1;                                         // Habilitar interrupciones globales
-    PIR1bits.ADIF = 0;                                          // Limpiar bandera de interrupción del ADC
-    PIE1bits.ADIE = 1;                                          // Interrupción ADC = enabled
     INTCONbits.PEIE = 1;                                        // Interrupciones periféricas activadas
+    
+    // Activación de variables globales
+    
     
     return;
 }

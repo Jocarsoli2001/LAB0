@@ -2783,6 +2783,8 @@ void __attribute__((picinterrupt(("")))) isr(void){
             else if(cont == 40){
                 PORTD = 3;
                 cont_display -= 1;
+                PORTA = 1;
+                PORTB = 1;
             }
             else if(cont >= 60){
                 PORTD = 7;
@@ -2793,6 +2795,17 @@ void __attribute__((picinterrupt(("")))) isr(void){
             }
             PORTC = tabla(cont_display);
         }
+        else if(cuenta_atras == 0){
+            if(PORTEbits.RE1 == 1 && inicio_carrera == 1){
+                while(PORTEbits.RE1);
+                PORTA = PORTA*2;
+            }
+            if(PORTEbits.RE2 == 1 && inicio_carrera == 1){
+                while(PORTEbits.RE2);
+                PORTB = PORTB*2;
+            }
+        }
+
     }
 
 }
@@ -2801,12 +2814,11 @@ void __attribute__((picinterrupt(("")))) isr(void){
 void main(void) {
     setup();
     while(1){
-        PORTA = 1;
-        PORTB = 1;
-        if(inicio_carrera == 1){
-            if(PORTEbits.RE1){
-
-            }
+        if(PORTA == 255 && PORTB < 255){
+            PORTD = 0b01000000;
+        }
+        else if(PORTB == 255 && PORTA < 255){
+            PORTD = 0b10000000;
         }
     }
 }
@@ -2846,9 +2858,10 @@ void setup(void){
     INTCONbits.T0IF = 0;
     INTCONbits.T0IE = 1;
     INTCONbits.GIE = 1;
-    PIR1bits.ADIF = 0;
-    PIE1bits.ADIE = 1;
     INTCONbits.PEIE = 1;
+
+
+
 
     return;
 }
